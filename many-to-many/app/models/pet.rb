@@ -1,14 +1,13 @@
 class Pet
 
-    attr_accessor :name, :sound, :owner
+    attr_accessor :name, :sound
     attr_reader :species
     @@all = []
 
-    def initialize(name, species, sound, owner=nil)
+    def initialize(name, species, sound)
         @name = name
         @species = species
         @sound = sound
-        @owner = owner
         @@all << self
     end
 
@@ -33,6 +32,7 @@ class Pet
     end
 
     def best_friend_name
+        # will need to be updated because relies on knowing and having access to owner
         if self.owner
             return self.owner.name
         else

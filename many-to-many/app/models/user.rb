@@ -4,7 +4,7 @@ class User
     attr_accessor :age, :bio, :home_state
     @@all = []
 
-    def initialize(name, age, bio, home_state)
+    def initialize(name, age, bio)
         @name = name
         @age = age
         @bio = bio
