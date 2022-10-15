@@ -1,6 +1,6 @@
 class UserPet
     attr_accessor :user, :pet
-    @all = []
+    @@all = []
 
     def initialize(user, pet)
         @user = user

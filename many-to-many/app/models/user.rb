@@ -25,16 +25,22 @@ class User
         return user_names
     end
 
-    def pets
-        Pet.all.find_all { |pet| pet.owner == self }
+    def user_pets
+        UserPet.all.select do |up|
+            up.user == self
+        end
     end
 
-    def adopt_pet(pet)
-        if pet.owner == nil
-            pet.owner = self
-        else
-            puts "pet already has owner, find your own!"
+    def pets
+        return self.user_pets.map do |up|
+            up.pet
         end
+    end
+
+    # TODO: update because pet does not have single owner anymore
+    def adopt_pet(pet)
+        UserPet.new(self, pet)
+        puts "Congrats #{self.name}, you're now #{pet.name}'s owner!"
     end
 
     def number_of_pets

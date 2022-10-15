@@ -31,12 +31,27 @@ class Pet
         return pet_list
     end
 
+    def user_pets
+        UserPet.all.select do |up|
+            up.pet == self
+        end
+    end
+
+    def owners
+        return self.user_pets.map do |up|
+            up.user
+        end
+    end
+
     def best_friend_name
-        # will need to be updated because relies on knowing and having access to owner
-        if self.owner
-            return self.owner.name
-        else
-            "Sorry #{self.name}, you need to find someone to adopt you"
+        self.owners.each do |owner|
+            puts "#{owner.name} is my best friend"
+        end
+    end
+
+    def run_away
+        UserPet.all.delete_if do |up|
+            up.pet == self
         end
     end
 
