@@ -21,6 +21,12 @@ class Pet
         end.uniq
     end
 
+    def self.find_by_name(name)
+        self.all.select do |pet|
+            pet.name == name
+        end
+    end
+
     def self.find_by_species(species)
         pet_list = []
         self.all.each do |pet|

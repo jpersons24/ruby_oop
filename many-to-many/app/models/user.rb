@@ -16,6 +16,12 @@ class User
         @@all
     end
 
+    def self.find_by_name(name)
+        self.all.select do |user|
+            user.name == name
+        end
+    end
+
     def self.super_friends(state)
         users = self.all.select do |user| 
             (user.home_state == state && user.pets.length >= 3)
@@ -44,7 +50,7 @@ class User
     end
 
     def number_of_pets
-        puts "#{self.name}, you have #{self.pets.count} pets."
+        self.pets.count
     end
 
 end
